@@ -4,8 +4,9 @@ const eur=new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximum
 const num=v=>v===''||v==null?NaN:Number(String(v).replace(/\D/g,''));
 const miles=n=>new Intl.NumberFormat('es-ES',{useGrouping:'always'}).format(n);
 const A=$('#app');
-const MARCAS=['Audi','BMW','Citroën','Dacia','Fiat','Ford','Honda','Hyundai','Kia','Mazda','Mercedes','Nissan','Opel','Peugeot','Renault','Seat','Skoda','Toyota','Volkswagen','Volvo'];
-const VACIO={marca:'',modelo:'',anio:'',km:'',comb:'',cambio:'',tipo:'',precio:'',descr:'',dgt:'',potencia:'',color:'',propietarios:'',destacado:false};
+const MODELOS={"Alfa Romeo":["147","156","159","Brera","Giulia","Giulietta","GT","MiTo","Stelvio"],"Audi":["A1","A3","A4","A5","A6","A7","A8","Q2","Q3","Q5","Q7","Q8","TT","e-tron"],"BMW":["Serie 1","Serie 2","Serie 3","Serie 4","Serie 5","Serie 6","Serie 7","X1","X2","X3","X4","X5","X6","Z3","Z4","i3","M3","M5"],"Chevrolet":["Aveo","Captiva","Cruze","Matiz","Orlando","Spark"],"Citroën":["Berlingo","C1","C2","C3","C3 Aircross","C4","C4 Cactus","C4 Picasso","C5","DS3","Saxo","Xsara Picasso"],"Cupra":["Ateca","Born","Formentor","León"],"Dacia":["Dokker","Duster","Jogger","Lodgy","Logan","Sandero","Spring"],"Fiat":["500","500L","500X","Bravo","Doblò","Ducato","Grande Punto","Panda","Punto","Qubo","Stilo","Tipo"],"Ford":["C-Max","EcoSport","Fiesta","Focus","Galaxy","Ka","Kuga","Mondeo","Mustang","Puma","S-Max","Transit"],"Honda":["Accord","Civic","CR-V","HR-V","Insight","Jazz"],"Hyundai":["Elantra","Getz","i10","i20","i30","i40","ix20","ix35","Kona","Santa Fe","Tucson"],"Jaguar":["E-Pace","F-Pace","X-Type","XE","XF","XJ"],"Jeep":["Cherokee","Compass","Grand Cherokee","Renegade","Wrangler"],"Kia":["Carens","Ceed","Niro","Optima","Picanto","Rio","Soul","Sorento","Sportage","Stonic","Venga"],"Land Rover":["Defender","Discovery","Discovery Sport","Freelander","Range Rover","Range Rover Evoque","Range Rover Sport","Range Rover Velar"],"Lexus":["CT","IS","NX","RX","UX"],"Mazda":["2","3","5","6","CX-3","CX-30","CX-5","MX-5"],"Mercedes":["Clase A","Clase B","Clase C","Clase E","Clase S","Clase V","CLA","CLK","CLS","GLA","GLC","GLE","GLK","ML","SLK","Sprinter","Vito"],"Mini":["Clubman","Cooper","Countryman","One","Paceman"],"Mitsubishi":["ASX","Colt","L200","Montero","Outlander","Space Star"],"Nissan":["Almera","Juke","Leaf","Micra","Navara","Note","Primera","Pulsar","Qashqai","X-Trail"],"Opel":["Adam","Agila","Astra","Corsa","Crossland","Grandland","Insignia","Meriva","Mokka","Vectra","Zafira"],"Peugeot":["106","206","207","208","2008","307","308","3008","407","508","5008","Boxer","Expert","Partner","Rifter"],"Porsche":["911","Boxster","Cayenne","Cayman","Macan","Panamera"],"Renault":["Captur","Clio","Espace","Kadjar","Kangoo","Koleos","Laguna","Master","Megane","Scenic","Talisman","Trafic","Twingo","Zoe"],"Seat":["Alhambra","Altea","Arona","Ateca","Exeo","Ibiza","León","Mii","Tarraco","Toledo"],"Skoda":["Citigo","Fabia","Kamiq","Karoq","Kodiaq","Octavia","Rapid","Roomster","Scala","Superb","Yeti"],"Smart":["Forfour","Fortwo"],"Subaru":["Forester","Impreza","Legacy","Outback","XV"],"Suzuki":["Alto","Celerio","Ignis","Jimny","S-Cross","Swift","SX4","Vitara"],"Tesla":["Model 3","Model S","Model X","Model Y"],"Toyota":["Auris","Avensis","Aygo","C-HR","Camry","Corolla","Hilux","Land Cruiser","Prius","RAV4","Verso","Yaris"],"Volkswagen":["Arteon","Caddy","Golf","Jetta","Passat","Polo","Scirocco","Sharan","T-Cross","T-Roc","Tiguan","Touareg","Touran","Transporter","Up!"],"Volvo":["S40","S60","S80","S90","V40","V50","V60","V70","V90","XC40","XC60","XC70","XC90"]};
+const MARCAS=Object.keys(MODELOS);
+const VACIO={marca:'',modelo:'',version:'',anio:'',km:'',comb:'',cambio:'',tipo:'',precio:'',descr:'',dgt:'',potencia:'',color:'',propietarios:'',destacado:false};
 const NOMBRES=['Datos del coche','Fotos','Precio y descripción','Revisar y publicar'];
 const S={coches:[],filtro:'todos',vista:'carga',paso:1,edit:null,b:{...VACIO},fotos:[],orig:0,errs:{},conf:null,msg:'',err:'',prog:0,progTxt:'',sucio:false,ultimo:null};
 
@@ -21,7 +22,8 @@ const msgErr=e=>e.status===401||e.status===403?'Tu sesión ha caducado. Recarga 
 const VAL={
  1:b=>{const e={},y=new Date().getFullYear();
   if(!b.marca.trim())e.marca='Escribe la marca. Por ejemplo: Seat';
-  if(!b.modelo.trim())e.modelo='Escribe el modelo. Por ejemplo: León ST 2.0 TDI';
+  if(!b.modelo.trim())e.modelo='Elige o escribe el modelo';
+  if((b.modelo+' '+b.version).trim().length>60)e.version='Demasiado largo: acórtalo un poco';
   const a=num(b.anio);if(!(a>=1950&&a<=y+1))e.anio=`Escribe el año con 4 cifras. Por ejemplo: ${y-5}`;
   if(!(num(b.km)>=0))e.km='Escribe los kilómetros. Por ejemplo: 85000';
   for(const k of['comb','cambio','tipo'])b[k]||(e[k]='Elige una opción');
@@ -31,7 +33,7 @@ const VAL={
   if(!(num(b.precio)>0))e.precio='Escribe el precio. Por ejemplo: 12900';
   for(const[k,m]of[['potencia',2000],['propietarios',20]])if(b[k]!==''&&!(num(b[k])>=1&&num(b[k])<=m))e[k]='Número no válido';
   return e}};
-const cuerpo=b=>({...b,anio:num(b.anio),km:num(b.km),precio:num(b.precio),potencia:b.potencia===''?null:num(b.potencia),propietarios:b.propietarios===''?null:num(b.propietarios)});
+const cuerpo=({version,...b})=>({...b,modelo:[b.modelo.trim(),version.trim()].filter(Boolean).join(' '),anio:num(b.anio),km:num(b.km),precio:num(b.precio),potencia:b.potencia===''?null:num(b.potencia),propietarios:b.propietarios===''?null:num(b.propietarios)});
 
 /* ---------- Piezas de formulario ---------- */
 const err=n=>S.errs[n]?`<p class="err" id="e-${n}">${S.errs[n]}</p>`:'';
@@ -64,9 +66,18 @@ ${l.length?`<ul class="adm-lista">${l.map(tarjeta).join('')}</ul>`:`<div class="
 
 const esOtra=()=>S.otra||(S.b.marca&&!MARCAS.includes(S.b.marca));
 const selMarca=()=>{const o=esOtra();return `<div><label for="f-marcaSel">Marca</label><select id="f-marcaSel" name="marcaSel" aria-invalid="${!o&&!!S.errs.marca}" autocomplete="off"><option value="">Elige…</option>${MARCAS.map(m=>`<option value="${m}"${!o&&S.b.marca===m?' selected':''}>${m}</option>`).join('')}<option value="__otra"${o?' selected':''}>Otra marca (escribirla)</option></select>${o?'':err('marca')}</div>${o?campo('marca','Escribe la marca',{ph:'Lancia'}):''}`};
+const lista=()=>esOtra()?null:MODELOS[S.b.marca];
+const esOtro=()=>S.otraM||(S.b.modelo&&lista()&&!lista().includes(S.b.modelo));
+const selModelo=()=>{const l=lista();
+ if(esOtra())return campo('modelo','Modelo',{ph:'Ypsilon'});
+ if(!S.b.marca)return '<p class="ayuda" style="margin:0">Elige primero la marca para ver sus modelos.</p>';
+ if(!l)return campo('modelo','Modelo',{ph:'Ypsilon'});
+ const o=esOtro();
+ return `<div><label for="f-modeloSel">Modelo</label><select id="f-modeloSel" name="modeloSel" aria-invalid="${!o&&!!S.errs.modelo}" autocomplete="off"><option value="">Elige…</option>${l.map(m=>`<option value="${esc(m)}"${!o&&S.b.modelo===m?' selected':''}>${esc(m)}</option>`).join('')}<option value="__otro"${o?' selected':''}>Otro modelo (escribirlo)</option></select>${o?'':err('modelo')}</div>${o?campo('modelo','Escribe el modelo',{ph:'Modelo'}):''}`};
 const pasoDatos=()=>`<p class="ayuda">Empieza por lo básico. Lo encuentras en la ficha técnica o en el permiso de circulación.</p>
 ${selMarca()}
-${campo('modelo','Modelo y versión',{ph:'León ST 2.0 TDI'})}
+${selModelo()}
+${S.b.marca||esOtra()?campo('version','Versión o motor (opcional)',{ph:'2.0 TDI 150 CV · E46 · Pack M'}):''}
 <div class="dos-c">${campo('anio','Año de matriculación',{num:1,ph:'2018'})}${campo('km','Kilómetros',{num:1,ph:'85000'})}</div>
 <div class="dos-c">${sel('comb','Combustible',['Diésel','Gasolina','Híbrido','Eléctrico'].map(x=>[x]))}${sel('cambio','Cambio',[['Manual'],['Automático']])}</div>
 ${sel('tipo','Tipo de coche',[['Utilitario','Utilitario (pequeño, de ciudad)'],['Berlina','Berlina'],['SUV','SUV (alto, todocamino)'],['Familiar','Familiar (ranchera o monovolumen)']])}`;
@@ -89,7 +100,7 @@ ${campo('color','Color',{ph:'Gris'})}</div></details>
 const pasoRevisar=()=>{const b=S.b,d=(t,v,c)=>v?`<div${c?` class="${c}"`:''}><dt>${t}</dt><dd>${esc(v)}</dd></div>`:'';
  return `<p class="ayuda">Mira que todo esté bien. Si algo no te convence, vuelve atrás con el botón «Atrás».</p>
 ${S.fotos[0]?`<img class="portada-prev" src="${esc(S.fotos[0].src)}" alt="Portada del coche">`:''}
-<dl class="resumen">${d('Coche',b.marca+' '+b.modelo,'ancho')}${d('Precio',eur.format(num(b.precio)))}${d('Año',b.anio)}${d('Kilómetros',miles(num(b.km))+' km')}${d('Combustible',b.comb)}${d('Cambio',b.cambio)}${d('Tipo',b.tipo)}${d('Etiqueta DGT',b.dgt)}${d('Potencia',b.potencia&&b.potencia+' CV')}${d('Color',b.color)}${d('Propietarios',b.propietarios)}${d('Fotos',S.fotos.length+' foto'+(S.fotos.length===1?'':'s'),'')}${d('En la portada',b.destacado?'Sí':'')}${d('Descripción',b.descr,'ancho')}</dl>
+<dl class="resumen">${d('Coche',(b.marca+' '+b.modelo+' '+b.version).trim(),'ancho')}${d('Precio',eur.format(num(b.precio)))}${d('Año',b.anio)}${d('Kilómetros',miles(num(b.km))+' km')}${d('Combustible',b.comb)}${d('Cambio',b.cambio)}${d('Tipo',b.tipo)}${d('Etiqueta DGT',b.dgt)}${d('Potencia',b.potencia&&b.potencia+' CV')}${d('Color',b.color)}${d('Propietarios',b.propietarios)}${d('Fotos',S.fotos.length+' foto'+(S.fotos.length===1?'':'s'),'')}${d('En la portada',b.destacado?'Sí':'')}${d('Descripción',b.descr,'ancho')}</dl>
 ${S.err?`<p class="avisos mal" role="alert">${esc(S.err)}</p>`:''}`};
 
 const vAsistente=()=>{const p=S.paso,f=[pasoDatos,pasoFotos,pasoPrecio,pasoRevisar][p-1];
@@ -108,9 +119,11 @@ const render=foco=>{A.innerHTML=VISTAS[S.vista]();foco&&A.querySelector('h1')?.f
 
 /* ---------- Datos ---------- */
 const cargar=async()=>{try{S.coches=await api('/api/admin/coches');S.vista='lista';S.err=''}catch(e){S.err=msgErr(e);S.vista=S.coches.length?'lista':'error'}render(true)};
-const nuevo=()=>{S.otra=false;S.edit=null;S.b={...VACIO};S.fotos=[];S.orig=0;S.paso=1;S.errs={};S.err='';S.msg='';S.sucio=false;S.vista='asistente';render(true)};
-const editar=id=>{const c=S.coches.find(x=>x.id===id);if(!c)return;S.otra=false;
+const nuevo=()=>{S.otra=false;S.otraM=false;S.edit=null;S.b={...VACIO};S.fotos=[];S.orig=0;S.paso=1;S.errs={};S.err='';S.msg='';S.sucio=false;S.vista='asistente';render(true)};
+const editar=id=>{const c=S.coches.find(x=>x.id===id);if(!c)return;S.otra=false;S.otraM=false;
  S.edit=id;S.b={...VACIO,marca:c.marca,modelo:c.modelo,anio:String(c.anio),km:String(c.km),comb:c.comb,cambio:c.cambio,tipo:c.tipo,precio:String(c.precio),descr:c.desc||'',dgt:c.dgt||'',potencia:c.potencia?String(c.potencia):'',color:c.color||'',propietarios:c.propietarios?String(c.propietarios):'',destacado:!!c.destacado};
+ {const l=MODELOS[c.marca],k=l&&l.filter(x=>c.modelo===x||c.modelo.startsWith(x+' ')).sort((a,b)=>b.length-a.length)[0];
+  if(k){S.b.modelo=k;S.b.version=c.modelo.slice(k.length).trim()}else if(l)S.otraM=true}
  S.fotos=Array.from({length:c.fotos},(_,i)=>({pos:i+1,src:foto(c,i+1)}));S.orig=c.fotos;S.paso=1;S.errs={};S.err='';S.msg='';S.sucio=false;S.vista='asistente';render(true)};
 const cambiarEstado=async(id,estado)=>{try{await api(`/api/admin/coches/${id}/estado`,{method:'PUT',json:{estado}});S.err=''}catch(e){S.err=msgErr(e)}await cargar()};
 const borrar=async id=>{try{await api(`/api/admin/coches/${id}`,{method:'DELETE'});S.err=''}catch(e){S.err=msgErr(e)}S.conf=null;await cargar()};
@@ -147,7 +160,8 @@ const guardar=async()=>{
 A.addEventListener('input',e=>{const t=e.target,n=t.name;if(!n||!(n in S.b))return;S.b[n]=t.type==='checkbox'?t.checked:t.value;S.sucio=true;if(S.errs[n]){delete S.errs[n];$(`#e-${n}`)?.remove();t.removeAttribute('aria-invalid')}});
 A.addEventListener('change',e=>{const t=e.target;
  if(t.type==='file'&&t.files.length){añadirFotos(t.files);t.value=''}
- else if(t.name==='marcaSel'){const o=t.value==='__otra';S.otra=o;S.b.marca=o?'':t.value;S.sucio=true;delete S.errs.marca;render();$(o?'#f-marca':'#f-marcaSel',A)?.focus()}});
+ else if(t.name==='marcaSel'){const o=t.value==='__otra';S.otra=o;S.otraM=false;S.b.marca=o?'':t.value;S.b.modelo='';S.b.version='';S.sucio=true;delete S.errs.marca;render();$(o?'#f-marca':'#f-modeloSel',A)?.focus()}
+ else if(t.name==='modeloSel'){const o=t.value==='__otro';S.otraM=o;S.b.modelo=o?'':t.value;S.sucio=true;delete S.errs.modelo;render();$(o?'#f-modelo':'#f-version',A)?.focus()}});
 A.addEventListener('submit',e=>{e.preventDefault();$('[data-a=sig],[data-a=publicar]',A)?.click()});
 A.addEventListener('click',e=>{
  const b=e.target.closest('[data-a]');if(!b)return;const{a,id,i,d}=b.dataset;
