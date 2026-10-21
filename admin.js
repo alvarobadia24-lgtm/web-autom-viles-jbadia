@@ -42,7 +42,7 @@ const sel=(n,et,ops,ayuda)=>`<div><label for="f-${n}">${et}</label><select ${att
 /* ---------- Vistas ---------- */
 const ETIQ={disponible:'Disponible',reservado:'Reservado',vendido:'Vendido'};
 const tarjeta=c=>`<li class="adm-coche">
- ${c.fotos?`<img src="${esc(foto(c,1))}" alt="" width="120" height="90">`:'<div class="sinfoto"></div>'}
+ ${c.fotos?`<img src="${esc(foto(c,1))}" alt="" width="120" height="90" >`:'<div class="sinfoto"></div>'}
  <div><h2>${esc(c.marca+' '+c.modelo)}</h2><p class="datos">${c.anio} · ${miles(c.km)} km · ${eur.format(c.precio)}</p><span class="est ${c.estado}">${ETIQ[c.estado]}</span></div>
  ${S.conf===c.id?`<div class="conf" role="alert"><p>¿Seguro que quieres borrar el ${esc(c.marca+' '+c.modelo)}? Se borrará para siempre.</p><button class="btn peli" data-a="borrar-si" data-id="${esc(c.id)}">Sí, borrar</button><button class="btn sec" data-a="borrar-no">No, lo dejo</button></div>`
  :`<div class="adm-acc"><button class="btn osc" data-a="editar" data-id="${esc(c.id)}">Editar</button>
@@ -62,9 +62,10 @@ ${S.err?`<p class="avisos mal" role="alert">${esc(S.err)}</p>`:''}
 <div class="filtros-est" role="group" aria-label="Mostrar">${[['todos','Todos'],['disponible','Disponibles'],['reservado','Reservados'],['vendido','Vendidos']].map(([e,t])=>`<button data-a="filtro" data-e="${e}" aria-pressed="${S.filtro===e}">${t} (${cuenta(e)})</button>`).join('')}</div>
 ${l.length?`<ul class="adm-lista">${l.map(tarjeta).join('')}</ul>`:`<div class="vacio-adm"><h2>${S.coches.length?'No hay coches en esta lista':'Todavía no hay ningún coche'}</h2><p>${S.coches.length?'Prueba con otro filtro.':'Pulsa «Añadir un coche» y te iremos guiando paso a paso.'}</p></div>`}`};
 
+const esOtra=()=>S.otra||(S.b.marca&&!MARCAS.includes(S.b.marca));
+const selMarca=()=>{const o=esOtra();return `<div><label for="f-marcaSel">Marca</label><select id="f-marcaSel" name="marcaSel" aria-invalid="${!o&&!!S.errs.marca}" autocomplete="off"><option value="">Elige…</option>${MARCAS.map(m=>`<option value="${m}"${!o&&S.b.marca===m?' selected':''}>${m}</option>`).join('')}<option value="__otra"${o?' selected':''}>Otra marca (escribirla)</option></select>${o?'':err('marca')}</div>${o?campo('marca','Escribe la marca',{ph:'Lancia'}):''}`};
 const pasoDatos=()=>`<p class="ayuda">Empieza por lo básico. Lo encuentras en la ficha técnica o en el permiso de circulación.</p>
-<datalist id="marcas">${MARCAS.map(m=>`<option value="${m}">`).join('')}</datalist>
-${campo('marca','Marca',{lista:'marcas',ph:'Seat'})}
+${selMarca()}
 ${campo('modelo','Modelo y versión',{ph:'León ST 2.0 TDI'})}
 <div class="dos-c">${campo('anio','Año de matriculación',{num:1,ph:'2018'})}${campo('km','Kilómetros',{num:1,ph:'85000'})}</div>
 <div class="dos-c">${sel('comb','Combustible',['Diésel','Gasolina','Híbrido','Eléctrico'].map(x=>[x]))}${sel('cambio','Cambio',[['Manual'],['Automático']])}</div>
@@ -107,8 +108,8 @@ const render=foco=>{A.innerHTML=VISTAS[S.vista]();foco&&A.querySelector('h1')?.f
 
 /* ---------- Datos ---------- */
 const cargar=async()=>{try{S.coches=await api('/api/admin/coches');S.vista='lista';S.err=''}catch(e){S.err=msgErr(e);S.vista=S.coches.length?'lista':'error'}render(true)};
-const nuevo=()=>{S.edit=null;S.b={...VACIO};S.fotos=[];S.orig=0;S.paso=1;S.errs={};S.err='';S.msg='';S.sucio=false;S.vista='asistente';render(true)};
-const editar=id=>{const c=S.coches.find(x=>x.id===id);if(!c)return;
+const nuevo=()=>{S.otra=false;S.edit=null;S.b={...VACIO};S.fotos=[];S.orig=0;S.paso=1;S.errs={};S.err='';S.msg='';S.sucio=false;S.vista='asistente';render(true)};
+const editar=id=>{const c=S.coches.find(x=>x.id===id);if(!c)return;S.otra=false;
  S.edit=id;S.b={...VACIO,marca:c.marca,modelo:c.modelo,anio:String(c.anio),km:String(c.km),comb:c.comb,cambio:c.cambio,tipo:c.tipo,precio:String(c.precio),descr:c.desc||'',dgt:c.dgt||'',potencia:c.potencia?String(c.potencia):'',color:c.color||'',propietarios:c.propietarios?String(c.propietarios):'',destacado:!!c.destacado};
  S.fotos=Array.from({length:c.fotos},(_,i)=>({pos:i+1,src:foto(c,i+1)}));S.orig=c.fotos;S.paso=1;S.errs={};S.err='';S.msg='';S.sucio=false;S.vista='asistente';render(true)};
 const cambiarEstado=async(id,estado)=>{try{await api(`/api/admin/coches/${id}/estado`,{method:'PUT',json:{estado}});S.err=''}catch(e){S.err=msgErr(e)}await cargar()};
@@ -144,7 +145,9 @@ const guardar=async()=>{
 
 /* ---------- Eventos ---------- */
 A.addEventListener('input',e=>{const t=e.target,n=t.name;if(!n||!(n in S.b))return;S.b[n]=t.type==='checkbox'?t.checked:t.value;S.sucio=true;if(S.errs[n]){delete S.errs[n];$(`#e-${n}`)?.remove();t.removeAttribute('aria-invalid')}});
-A.addEventListener('change',e=>{const t=e.target;if(t.type==='file'&&t.files.length){añadirFotos(t.files);t.value=''}});
+A.addEventListener('change',e=>{const t=e.target;
+ if(t.type==='file'&&t.files.length){añadirFotos(t.files);t.value=''}
+ else if(t.name==='marcaSel'){const o=t.value==='__otra';S.otra=o;S.b.marca=o?'':t.value;S.sucio=true;delete S.errs.marca;render();$(o?'#f-marca':'#f-marcaSel',A)?.focus()}});
 A.addEventListener('submit',e=>{e.preventDefault();$('[data-a=sig],[data-a=publicar]',A)?.click()});
 A.addEventListener('click',e=>{
  const b=e.target.closest('[data-a]');if(!b)return;const{a,id,i,d}=b.dataset;
