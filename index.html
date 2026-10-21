@@ -3,141 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Automóviles JBadia | Compraventa de coches en Bollullos de la Mitación</title>
-<meta name="description" content="Automóviles JBadia: más de 20 años en la compra y venta de coches de ocasión en Bollullos de la Mitación. Todas las gamas, con garantía y trato cercano.">
-<style>
-:root{--azul:#0f2742;--rojo:#d62828;--gris:#f4f6f9;--texto:#222}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Segoe UI,Arial,sans-serif;color:var(--texto);line-height:1.6}
-a{text-decoration:none;color:inherit}
-.wrap{max-width:1100px;margin:auto;padding:0 20px}
-header{background:var(--azul);color:#fff;position:sticky;top:0;z-index:10}
-header .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
-.logo{font-weight:700;font-size:1.2rem}.logo span{color:var(--rojo)}
-nav a{margin-left:22px;font-size:.95rem}
-nav a:hover{color:var(--rojo)}
-.hero{background:linear-gradient(rgba(15,39,66,.85),rgba(15,39,66,.85)),linear-gradient(135deg,#1d4e89,#0f2742);color:#fff;text-align:center;padding:110px 20px}
-.hero h1{font-size:2.6rem;margin-bottom:14px}
-.hero p{max-width:620px;margin:0 auto 28px;font-size:1.1rem}
-.btn{display:inline-block;background:var(--rojo);color:#fff;padding:13px 28px;border-radius:6px;font-weight:600;transition:.2s}
-.btn:hover{background:#b01e1e}
-.btn.alt{background:transparent;border:2px solid #fff;margin-left:10px}
-section{padding:70px 0}
-section.gris{background:var(--gris)}
-h2{text-align:center;font-size:2rem;color:var(--azul);margin-bottom:10px}
-.sub{text-align:center;color:#666;margin-bottom:40px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
-.card{background:#fff;border-radius:10px;padding:28px;box-shadow:0 4px 14px rgba(0,0,0,.08);text-align:center}
-.card .ico{font-size:2.4rem;margin-bottom:10px}
-.card h3{color:var(--azul);margin-bottom:8px}
-.coche{padding:0;overflow:hidden;text-align:left}
-.coche .foto{position:relative;height:170px;background:linear-gradient(135deg,#cfd8e3,#9fb1c7);display:flex;align-items:center;justify-content:center;font-size:3rem}
-.badge{position:absolute;top:12px;left:12px;background:var(--azul);color:#fff;font-size:.75rem;padding:4px 10px;border-radius:20px}
-.badge.alta{background:#b8860b}.badge.media{background:#1d4e89}.badge.baja{background:#2e7d32}
-.coche .info{padding:18px}
-.coche .precio{color:var(--rojo);font-weight:700;font-size:1.3rem}
-.coche small{color:#666;display:block;margin:4px 0 8px}
-.stats{background:var(--azul);color:#fff;padding:50px 0}
-.stats .grid{text-align:center}
-.stats b{display:block;font-size:2.4rem;color:var(--rojo)}
-.contacto{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-.contacto p{margin-bottom:12px}
-iframe{width:100%;height:320px;border:0;border-radius:10px}
-footer{background:#0a1a2e;color:#aab;text-align:center;padding:22px;font-size:.9rem}
-.wa{position:fixed;right:20px;bottom:20px;background:#25d366;color:#fff;padding:14px 18px;border-radius:50px;font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,.3)}
-@media(max-width:700px){nav{display:none}.hero h1{font-size:2rem}.contacto{grid-template-columns:1fr}.btn.alt{margin:10px 0 0}}
-</style>
+<meta name="theme-color" content="#e8ebe6">
+<title>AutosJBS · Coches de ocasión en Bollullos de la Mitación</title>
+<meta name="description" content="Compraventa de coches de ocasión en Bollullos de la Mitación. Más de 20 años de experiencia, todas las gamas y garantía.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="estilos.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+<div id="cab"></div>
+<main id="main">
 
-<header>
-  <div class="wrap">
-    <div class="logo">AUTOMÓVILES <span>JBADIA</span></div>
-    <nav>
-      <a href="#servicios">Servicios</a>
-      <a href="#coches">Coches</a>
-      <a href="#nosotros">Nosotros</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </div>
-</header>
+<section class="hero"><div class="wrap hero-grid">
+ <div>
+  <h1>Coches de ocasión con garantía</h1>
+  <p class="lead">Más de 20 años comprando y vendiendo coches en Bollullos de la Mitación. Todas las gamas, con garantía y trato directo.</p>
+  <form class="buscador rev" id="rapida" action="coches.html">
+   <div><label for="h-marca">Marca</label><select id="h-marca" name="marca" autocomplete="off"><option value="">Todas</option></select></div>
+   <div><label for="h-pmax">Precio máximo</label><select id="h-pmax" name="pmax" autocomplete="off"><option value="">Sin límite</option></select></div>
+   <div><label for="h-comb">Combustible</label><select id="h-comb" name="comb" autocomplete="off"><option value="">Todos</option></select></div>
+   <button class="btn" type="submit" id="h-ver">Ver coches</button>
+  </form>
+ </div>
+ <div class="hero-foto rev"><img src="fotos/portada.jpg" alt="Coches en venta en el local de AutosJBS" width="800" height="1000" fetchpriority="high" onerror="this.hidden=true"></div>
+</div></section>
 
-<div class="hero">
-  <h1>Tu coche de confianza en Bollullos de la Mitación</h1>
-  <p>Más de 20 años comprando y vendiendo coches de todas las gamas, con garantía y trato cercano.</p>
-  <a class="btn" href="#coches">Ver coches</a>
-  <a class="btn alt" href="#contacto">Vende tu coche</a>
-</div>
+<section class="banda oscuro"><div class="wrap hechos">
+ <p class="rev"><strong>+20</strong>años comprando y vendiendo coches en Bollullos de la Mitación.</p>
+ <p class="rev" style="--i:1"><strong>L–S</strong>abierto de lunes a sábado, por la mañana y por la tarde.</p>
+ <p class="rev" style="--i:2"><strong>Garantía</strong>con seguro de 12 meses, según la antigüedad y el estado del coche.</p>
+</div></section>
 
-<section id="servicios">
-  <div class="wrap">
-    <h2>Nuestros servicios</h2>
-    <p class="sub">Todo lo que necesitas para comprar o vender tu coche sin preocupaciones</p>
-    <div class="grid">
-      <div class="card"><div class="ico">🚗</div><h3>Venta de coches</h3><p>Vehículos revisados y listos para circular, con precios claros.</p></div>
-      <div class="card"><div class="ico">💶</div><h3>Compramos tu coche</h3><p>Valoración justa y pago rápido de tu vehículo.</p></div>
-      <div class="card"><div class="ico">📄</div><h3>Gestión de papeles</h3><p>Nos encargamos del cambio de titularidad y la documentación.</p></div>
-      <div class="card"><div class="ico">🛡️</div><h3>Garantía</h3><p>Compra con tranquilidad: ofrecemos garantía en nuestros vehículos.</p></div>
-    </div>
-  </div>
-</section>
+<section class="seccion"><div class="wrap">
+ <div class="cabeza"><h2>Elige por presupuesto</h2><p>Tres gamas, un mismo trato directo y con garantía.</p></div>
+ <div class="gamas">
+  <a class="gama alta rev" href="coches.html?gama=alta" data-gama="alta"><div><h3>Gama alta</h3><p class="n"></p></div><div><span class="desde"></span><span class="ver">Ver coches</span></div></a>
+  <a class="gama rev" style="--i:1" href="coches.html?gama=media" data-gama="media"><div><h3>Gama media</h3><p class="n"></p></div><div><span class="desde"></span><span class="ver">Ver coches</span></div></a>
+  <a class="gama eco rev" style="--i:2" href="coches.html?gama=eco" data-gama="eco"><div><h3>Económicos</h3><p class="n"></p></div><div><span class="desde"></span><span class="ver">Ver coches</span></div></a>
+ </div>
+</div></section>
 
-<section id="coches" class="gris">
-  <div class="wrap">
-    <h2>Coches destacados</h2>
-    <p class="sub">Tenemos vehículos para todos los gustos y presupuestos</p>
-    <div class="grid">
-      <div class="card coche"><div class="foto"><span class="badge alta">Gama alta</span>🏎️</div><div class="info"><h3>Marca Modelo</h3><small>2021 · 45.000 km · Diésel · Automático</small><div class="precio">32.900 €</div></div></div>
-      <div class="card coche"><div class="foto"><span class="badge alta">Gama alta</span>🚘</div><div class="info"><h3>Marca Modelo</h3><small>2020 · 60.000 km · Gasolina · Automático</small><div class="precio">27.500 €</div></div></div>
-      <div class="card coche"><div class="foto"><span class="badge media">Gama media</span>🚙</div><div class="info"><h3>Marca Modelo</h3><small>2018 · 95.000 km · Diésel · Manual</small><div class="precio">12.900 €</div></div></div>
-      <div class="card coche"><div class="foto"><span class="badge media">Gama media</span>🚗</div><div class="info"><h3>Marca Modelo</h3><small>2017 · 110.000 km · Gasolina · Manual</small><div class="precio">9.800 €</div></div></div>
-      <div class="card coche"><div class="foto"><span class="badge baja">Económico</span>🚗</div><div class="info"><h3>Marca Modelo</h3><small>2012 · 150.000 km · Diésel · Manual</small><div class="precio">3.900 €</div></div></div>
-      <div class="card coche"><div class="foto"><span class="badge baja">Económico</span>🚙</div><div class="info"><h3>Marca Modelo</h3><small>2010 · 170.000 km · Gasolina · Manual</small><div class="precio">2.600 €</div></div></div>
-    </div>
-  </div>
-</section>
+<section class="seccion" style="padding-top:0"><div class="wrap">
+ <div class="cabeza"><h2>Coches destacados</h2><a class="btn osc" href="coches.html" id="todos">Ver todos los coches</a></div>
+ <div class="rejilla" id="destacados"></div>
+</div></section>
 
-<div class="stats">
-  <div class="wrap grid">
-    <div><b>+20</b>años de experiencia</div>
-    <div><b>3</b>gamas: alta, media y económica</div>
-    <div><b>✓</b>vehículos con garantía</div>
-  </div>
-</div>
+<section class="seccion" style="padding-top:0"><div class="wrap dos">
+ <h2 class="rev">Comprar o vender, sin papeleo</h2>
+ <ol class="pasos">
+  <li class="rev"><h3>Elige o cuéntanos tu coche</h3><p>Mira el catálogo o pasa por el local. Si vendes, dinos marca, modelo, año y kilómetros.</p></li>
+  <li class="rev" style="--i:1"><h3>Resuelve tus dudas</h3><p>Hablas directamente con quien te vende o te compra el coche, sin intermediarios.</p></li>
+  <li class="rev" style="--i:2"><h3>Papeles con nuestra gestoría</h3><p>Tramitamos el cambio de titularidad con nuestra gestoría, para que solo te preocupes de conducir.</p></li>
+ </ol>
+</div></section>
 
-<section id="nosotros">
-  <div class="wrap">
-    <h2>Sobre nosotros</h2>
-    <p class="sub">Un negocio familiar con trayectoria</p>
-    <p style="max-width:720px;margin:auto;text-align:center">
-      En Automóviles JBadia llevamos más de 20 años dedicándonos a la compra y venta de coches en Bollullos de la Mitación y alrededores.
-      Trabajamos con todo tipo de vehículos, desde gama alta hasta opciones económicas, siempre con garantía y un trato honrado y cercano.
-      Cada coche se revisa a conciencia para que compres con total seguridad.
-    </p>
-  </div>
-</section>
+<section class="seccion" style="padding-top:0"><div class="wrap">
+ <div class="cta oscuro rev">
+  <div><h2>¿Quieres vender tu coche?</h2><p>Escríbenos con los datos y te contactamos con una valoración.</p></div>
+  <a class="btn" href="https://wa.me/34605976375?text=Hola%2C%20quiero%20vender%20mi%20coche" target="_blank" rel="noopener">Vender por WhatsApp</a>
+ </div>
+</div></section>
 
-<section id="contacto" class="gris">
-  <div class="wrap">
-    <h2>Contacto</h2>
-    <p class="sub">Visítanos o llámanos sin compromiso</p>
-    <div class="contacto">
-      <div>
-        <p>📍 <b>Dirección:</b> Calle Picasso, nº 1 · Bollullos de la Mitación (Sevilla)</p>
-        <p>📞 <b>Teléfono:</b> <a href="tel:+34605976375">605 97 63 75</a></p>
-        <p>✉️ <b>Email:</b> <a href="mailto:jbadia875@gmail.com">jbadia875@gmail.com</a></p>
-        <p>🕒 <b>Horario:</b> lunes a sábado, de 9:00 a 14:00 y de 17:00 a 21:00</p>
-        <a class="btn" href="tel:+34605976375">Llamar ahora</a>
-      </div>
-      <iframe loading="lazy" src="https://www.google.com/maps?q=Calle+Picasso+1,+Bollullos+de+la+Mitaci%C3%B3n&output=embed"></iframe>
-    </div>
-  </div>
-</section>
-
-<footer>© 2026 Automóviles JBadia · Calle Picasso, 1 · Bollullos de la Mitación, Sevilla</footer>
-
-<a class="wa" href="https://wa.me/34605976375" target="_blank">💬 WhatsApp</a>
-
+</main>
+<div id="pie"></div>
+<script src="datos.js"></script><script src="componentes.js"></script><script src="app.js"></script>
 </body>
 </html>

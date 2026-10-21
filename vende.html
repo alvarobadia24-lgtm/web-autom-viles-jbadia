@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e8ebe6">
+<title>Vende tu coche · AutosJBS</title>
+<meta name="description" content="Vende tu coche en Bollullos de la Mitación. Cuéntanos los datos y te contactamos con una valoración.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="estilos.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<div id="cab"></div>
+<main id="main">
+
+<div class="wrap titulo">
+ <h1>Vende tu coche</h1>
+ <p>Rellena los datos y te contactamos con una valoración.</p>
+</div>
+
+<div class="wrap dos" style="padding-bottom:var(--sec)">
+ <div>
+  <h2>Así de sencillo</h2>
+  <ol class="pasos" style="margin-top:32px">
+   <li><h3>Cuéntanos tu coche</h3><p>Marca, modelo, año y kilómetros.</p></li>
+   <li><h3>Te damos una valoración</h3><p>Te contactamos para hablar del precio.</p></li>
+   <li><h3>Cerramos la operación</h3><p>Tramitamos el cambio de titularidad con nuestra gestoría.</p></li>
+  </ol>
+  <p class="texto">También puedes llamarnos al <a href="tel:+34605976375"><strong>605&nbsp;97&nbsp;63&nbsp;75</strong></a> o pasar por el local.</p>
+ </div>
+
+ <form class="formu" id="vende" aria-label="Datos de tu coche">
+  <div class="dosc">
+   <div><label for="v-marca">Marca</label><input id="v-marca" name="marca" autocomplete="off" required></div>
+   <div><label for="v-modelo">Modelo</label><input id="v-modelo" name="modelo" autocomplete="off" required></div>
+  </div>
+  <div class="dosc">
+   <div><label for="v-anio">Año</label><input id="v-anio" name="anio" type="number" inputmode="numeric" min="1990" max="2027" autocomplete="off" required></div>
+   <div><label for="v-km">Kilómetros</label><input id="v-km" name="km" type="number" inputmode="numeric" min="0" autocomplete="off" required></div>
+  </div>
+  <div><label for="v-comb">Combustible</label><select id="v-comb" name="comb" autocomplete="off"><option>Diésel</option><option>Gasolina</option><option>Híbrido</option><option>Eléctrico</option></select></div>
+  <div class="dosc">
+   <div><label for="v-nombre">Tu nombre</label><input id="v-nombre" name="nombre" autocomplete="name" required></div>
+   <div><label for="v-tel">Teléfono</label><input id="v-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required></div>
+  </div>
+  <div><label for="v-msg">Comentarios (opcional)</label><textarea id="v-msg" name="msg" rows="3" autocomplete="off"></textarea></div>
+  <button class="btn" type="submit">Enviar por WhatsApp</button>
+  <small>Al enviar se abrirá WhatsApp con tu mensaje ya escrito.</small>
+ </form>
+</div>
+
+</main>
+<div id="pie"></div>
+<script src="datos.js"></script><script src="componentes.js"></script><script src="app.js"></script>
+</body>
+</html>

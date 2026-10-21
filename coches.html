@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e8ebe6">
+<title>Coches en venta · AutosJBS</title>
+<meta name="description" content="Catálogo de coches de ocasión en Bollullos de la Mitación. Filtra por marca, precio, año y kilómetros.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="estilos.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<div id="cab"></div>
+<main id="main">
+
+<div class="wrap titulo">
+ <h1>Coches en venta</h1>
+ <p>Filtra por marca, precio, año o kilómetros. Ofrecemos garantía en nuestros vehículos.</p>
+</div>
+
+<div class="wrap cat">
+ <details class="lateral" id="det">
+  <summary>Filtros</summary>
+  <form id="filtros" aria-label="Filtros del catálogo"></form>
+ </details>
+
+ <section aria-labelledby="t-res">
+  <h2 class="sr" id="t-res">Resultados</h2>
+  <div class="barra">
+   <p id="cuenta" aria-live="polite"></p>
+   <div><label class="sr" for="orden">Ordenar por</label>
+   <select id="orden" name="orden" form="filtros" autocomplete="off">
+    <option value="">Destacados</option><option value="precio-asc">Precio: de menor a mayor</option><option value="precio-desc">Precio: de mayor a menor</option>
+    <option value="anio-desc">Más recientes</option><option value="km-asc">Menos kilómetros</option>
+   </select></div>
+  </div>
+  <div id="chips" role="group" aria-label="Filtros activos"></div>
+  <div class="rejilla" id="lista"></div>
+  <div class="vacio" id="vacio" hidden>
+   <h2>No hay coches con esos filtros</h2>
+   <p>Quita algún filtro o cuéntanos qué buscas y lo miramos.</p>
+   <button class="btn sec" type="button" id="borrar2">Borrar filtros</button><a class="btn osc" href="https://wa.me/34605976375?text=Hola%2C%20busco%20un%20coche" target="_blank" rel="noopener">Pedir un coche</a>
+  </div>
+ </section>
+</div>
+
+</main>
+<div id="pie"></div>
+<script src="datos.js"></script><script src="componentes.js"></script><script src="app.js"></script>
+</body>
+</html>

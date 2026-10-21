@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e8ebe6">
+<title>Contacto y cómo llegar · AutosJBS</title>
+<meta name="description" content="Contacta con AutosJBS en Calle Picasso, 1, Bollullos de la Mitación. Teléfono, WhatsApp, email y horario.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="estilos.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<div id="cab"></div>
+<main id="main">
+
+<div class="wrap titulo">
+ <h1>Contacto</h1>
+ <p>Visítanos o escríbenos sin compromiso.</p>
+</div>
+
+<div class="wrap dos" style="padding-bottom:var(--sec)">
+ <div>
+  <h2 class="sr">Datos de contacto</h2>
+  <dl class="contacto">
+   <div><dt>Dirección</dt><dd>Calle Picasso, 1<br>Bollullos de la Mitación (Sevilla)</dd></div>
+   <div><dt>Teléfono</dt><dd><a href="tel:+34605976375">605&nbsp;97&nbsp;63&nbsp;75</a></dd></div>
+   <div><dt>Email</dt><dd><a href="mailto:jbadia@autosjbs.es">jbadia@autosjbs.es</a></dd></div>
+  </dl>
+  <div class="botones">
+   <a class="btn osc" href="https://www.google.com/maps/search/?api=1&query=Calle+Picasso+1+Bollullos+de+la+Mitaci%C3%B3n" target="_blank" rel="noopener">Cómo llegar</a>
+   <a class="btn" href="https://wa.me/34605976375" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+  </div>
+ </div>
+
+ <section class="horario">
+  <h2>Horario</h2>
+  <p class="estado" id="ahora" aria-live="polite"></p>
+  <table>
+   <tr><td>Lunes a sábado</td><td>9:00–14:00 y 17:00–21:00</td></tr>
+   <tr><td>Domingo</td><td>Cerrado</td></tr>
+  </table>
+ </section>
+</div>
+
+</main>
+<div id="pie"></div>
+<script src="datos.js"></script><script src="componentes.js"></script><script src="app.js"></script>
+</body>
+</html>

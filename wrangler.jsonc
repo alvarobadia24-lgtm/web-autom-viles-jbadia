@@ -1,0 +1,8 @@
+{
+ "name": "automoviles-jbadia",
+ "main": "worker.js",
+ "compatibility_date": "2025-09-01",
+ "assets": {"directory": "./", "binding": "ASSETS", "run_worker_first": ["/api/*", "/fotos/*"]},
+ "d1_databases": [{"binding": "DB", "database_name": "badia-coches", "database_id": "aaaa9004-b22e-4cde-9442-c439e47ae271"}],
+ "vars": {"TEAM_DOMAIN": "", "POLICY_AUD": "", "ADMIN_EMAILS": ""}
+}
