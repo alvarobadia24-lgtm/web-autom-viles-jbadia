@@ -3,64 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#eef1f5">
+<meta name="theme-color" content="#07111c">
 <title>AutosJBS · Coches de ocasión en Bollullos de la Mitación</title>
 <meta name="description" content="Compraventa de coches de ocasión en Bollullos de la Mitación. Más de 20 años de experiencia, todas las gamas y garantía.">
 <link rel="canonical" href="https://autosjbs.es/">
+<meta property="og:url" content="https://autosjbs.es/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="AutosJBS">
 <meta property="og:title" content="AutosJBS · Coches de ocasión en Bollullos de la Mitación">
 <meta property="og:description" content="Compraventa de coches de ocasión en Bollullos de la Mitación. Más de 20 años de experiencia, todas las gamas y garantía.">
-<meta property="og:url" content="https://autosjbs.es/">
 <meta property="og:image" content="https://autosjbs.es/og-autosjbs.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<link rel="preload" href="fuentes/saira.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/instrument.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="estilos.css">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');if(!(document.referrer&&document.referrer.indexOf(location.host)>-1)&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on')</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoDealer","name":"AutosJBS","url":"https://autosjbs.es/","image":"https://autosjbs.es/og-autosjbs.png","telephone":"+34605976375","email":"jbadia@autosjbs.es","address":{"@type":"PostalAddress","streetAddress":"Calle Picasso, 1","addressLocality":"Bollullos de la Mitación","addressRegion":"Sevilla","addressCountry":"ES"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"14:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"17:00","closes":"21:00"}]}</script>
 </head>
 <body>
+<div class="intro" aria-hidden="true"><img src="logo-icono.png" alt="" width="112" height="112"><i></i></div>
 <div id="cab"></div>
 <main id="main">
 
-<section class="hero"><div class="wrap hero-grid">
- <div>
-  <h1>Coches de ocasión con garantía</h1>
-  <p class="lead">Más de 20 años comprando y vendiendo coches en Bollullos de la Mitación. Todas las gamas, con garantía y trato directo.</p>
-  <form class="buscador rev" id="rapida" action="coches.html">
+<section class="hero oscuro">
+ <div class="hero-fondo" aria-hidden="true"></div>
+ <div class="wrap hero-grid">
+  <div class="hero-txt">
+   <p class="hero-sitio">Compraventa en Bollullos de la Mitación</p>
+   <h1 class="titular"><span class="lin"><span>Coches</span></span><span class="lin"><span>de ocasión</span></span><span class="lin"><span class="hueco">con garantía</span></span></h1>
+   <p class="lead">Más de 20 años comprando y vendiendo coches. Todas las gamas, con seguro de garantía de 12 meses y trato directo.</p>
+   <div class="hero-btns"><a class="btn oro" href="coches.html" id="h-todos">Ver los coches</a><a class="btn linea" href="vende.html">Vender mi coche</a></div>
+  </div>
+  <div class="pase" id="pase" role="group" aria-roledescription="carrusel" aria-label="Coches destacados"></div>
+ </div>
+ <div class="wrap">
+  <form class="buscador" id="rapida" action="coches.html" aria-label="Búsqueda rápida">
    <div><label for="h-marca">Marca</label><select id="h-marca" name="marca" autocomplete="off"><option value="">Todas</option></select></div>
    <div><label for="h-pmax">Precio máximo</label><select id="h-pmax" name="pmax" autocomplete="off"><option value="">Sin límite</option></select></div>
    <div><label for="h-comb">Combustible</label><select id="h-comb" name="comb" autocomplete="off"><option value="">Todos</option></select></div>
-   <button class="btn" type="submit" id="h-ver">Ver coches</button>
+   <button class="btn oro" type="submit" id="h-ver"><span>Ver coches</span><svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </form>
  </div>
- <div class="hero-foto rev"><img src="fotos/portada.jpg" alt="Coches en venta en el local de AutosJBS" width="800" height="1000" fetchpriority="high" onerror="this.hidden=true"></div>
-</div></section>
+</section>
 
-<section class="banda oscuro"><div class="wrap hechos">
- <p class="rev"><strong>+20</strong>años comprando y vendiendo coches en Bollullos de la Mitación.</p>
- <p class="rev" style="--i:1"><strong>L–S</strong>abierto de lunes a sábado, por la mañana y por la tarde.</p>
- <p class="rev" style="--i:2"><strong>Garantía</strong>con seguro de 12 meses, según la antigüedad y el estado del coche.</p>
-</div></section>
+<div class="cinta-caja oscuro" hidden><div class="cinta" id="cinta" aria-label="Marcas que tenemos ahora"></div></div>
 
-<section class="seccion"><div class="wrap">
- <div class="cabeza"><h2>Elige por presupuesto</h2><p>Tres gamas, un mismo trato directo y con garantía.</p></div>
- <div class="gamas">
-  <a class="gama alta rev" href="coches.html?gama=alta" data-gama="alta"><div><h3>Gama alta</h3><p class="n"></p></div><div><span class="desde"></span><span class="ver">Ver coches</span></div></a>
-  <a class="gama rev" style="--i:1" href="coches.html?gama=media" data-gama="media"><div><h3>Gama media</h3><p class="n"></p></div><div><span class="desde"></span><span class="ver">Ver coches</span></div></a>
-  <a class="gama eco rev" style="--i:2" href="coches.html?gama=eco" data-gama="eco"><div><h3>Económicos</h3><p class="n"></p></div><div><span class="desde"></span><span class="ver">Ver coches</span></div></a>
- </div>
+<section aria-label="AutosJBS en tres datos"><div class="wrap hechos">
+ <p class="rev"><strong>+<span data-cuenta="20">20</span></strong><span>años comprando y vendiendo coches en Bollullos de la Mitación.</span></p>
+ <p class="rev" style="--i:1"><strong><span id="n-coches" data-cuenta="0">0</span></strong><span>coches en venta ahora mismo, de todas las gamas.</span></p>
+ <p class="rev" style="--i:2"><strong><span data-cuenta="12">12</span></strong><span>meses de seguro de garantía, según la antigüedad y el estado del coche.</span></p>
 </div></section>
 
 <section class="seccion" style="padding-top:0"><div class="wrap">
- <div class="cabeza"><h2>Coches destacados</h2><a class="btn osc" href="coches.html" id="todos">Ver todos los coches</a></div>
- <div class="rejilla" id="destacados"></div>
+ <div class="cabeza"><h2 class="rev">Elige por presupuesto</h2><p class="rev" style="--i:1">Tres gamas, un mismo trato directo y con garantía.</p></div>
+ <div class="gamas">
+  <a class="gama rev" href="coches.html?gama=alta" data-gama="alta"><span class="gama-foto"></span><span class="redondo"><svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="n"></span><h3>Gama alta</h3><span class="desde"></span></a>
+  <a class="gama rev" style="--i:1" href="coches.html?gama=media" data-gama="media"><span class="gama-foto"></span><span class="redondo"><svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="n"></span><h3>Gama media</h3><span class="desde"></span></a>
+  <a class="gama rev" style="--i:2" href="coches.html?gama=eco" data-gama="eco"><span class="gama-foto"></span><span class="redondo"><svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="n"></span><h3>Económicos</h3><span class="desde"></span></a>
+ </div>
 </div></section>
 
-<section class="seccion" style="padding-top:0"><div class="wrap dos">
+<section class="seccion"><div class="wrap">
+ <div class="cabeza"><h2 class="rev">Coches destacados</h2>
+  <div class="cabeza-btns"><button class="redondo" type="button" data-carril="-1" aria-label="Coches anteriores"><svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><button class="redondo" type="button" data-carril="1" aria-label="Coches siguientes"><svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button><a class="btn osc" href="coches.html" id="todos">Ver todos los coches</a></div></div>
+ <div class="carril" id="destacados"></div>
+</div></section>
+
+<section class="seccion"><div class="wrap dos">
  <h2 class="rev">Comprar o vender, sin papeleo</h2>
  <ol class="pasos">
   <li class="rev"><h3>Elige o cuéntanos tu coche</h3><p>Mira el catálogo o pasa por el local. Si vendes, dinos marca, modelo, año y kilómetros.</p></li>
@@ -69,10 +81,11 @@
  </ol>
 </div></section>
 
-<section class="seccion" style="padding-top:0"><div class="wrap">
+<section class="seccion"><div class="wrap">
  <div class="cta oscuro rev">
+  <svg class="escudo" viewBox="0 0 96 112" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M48 5 88 19v33c0 26-17 44-40 55C25 96 8 78 8 52V19Z"/><path pathLength="1" d="m31 55 12 12 23-25"/></svg>
   <div><h2>¿Quieres vender tu coche?</h2><p>Escríbenos con los datos y te contactamos con una valoración.</p></div>
-  <a class="btn" href="https://wa.me/34605976375?text=Hola%2C%20quiero%20vender%20mi%20coche" target="_blank" rel="noopener">Vender por WhatsApp</a>
+  <a class="btn oro" href="vende.html">Vender mi coche</a>
  </div>
 </div></section>
 

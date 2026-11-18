@@ -3,46 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#eef1f5">
+<meta name="theme-color" content="#07111c">
 <title>Vende tu coche · AutosJBS</title>
 <meta name="description" content="Vende tu coche en Bollullos de la Mitación. Cuéntanos los datos y te contactamos con una valoración.">
 <link rel="canonical" href="https://autosjbs.es/vende.html">
+<meta property="og:url" content="https://autosjbs.es/vende.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="AutosJBS">
 <meta property="og:title" content="Vende tu coche · AutosJBS">
 <meta property="og:description" content="Vende tu coche en Bollullos de la Mitación. Cuéntanos los datos y te contactamos con una valoración.">
-<meta property="og:url" content="https://autosjbs.es/vende.html">
 <meta property="og:image" content="https://autosjbs.es/og-autosjbs.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<link rel="preload" href="fuentes/saira.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/instrument.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="estilos.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 <div id="cab"></div>
 <main id="main">
-
-<div class="wrap titulo">
- <h1>Vende tu coche</h1>
+<section class="portadilla oscuro"><div class="wrap">
+ <h1 class="titular"><span class="lin"><span>Vende</span></span><span class="lin"><span class="hueco">tu coche</span></span></h1>
  <p>Rellena los datos y te contactamos con una valoración.</p>
-</div>
+</div></section>
 
-<div class="wrap dos" style="padding-bottom:var(--sec)">
+<div class="wrap vende">
  <div>
-  <h2>Así de sencillo</h2>
-  <ol class="pasos" style="margin-top:32px">
-   <li><h3>Cuéntanos tu coche</h3><p>Marca, modelo, año y kilómetros.</p></li>
-   <li><h3>Te damos una valoración</h3><p>Te contactamos para hablar del precio.</p></li>
-   <li><h3>Cerramos la operación</h3><p>Tramitamos el cambio de titularidad con nuestra gestoría.</p></li>
+  <h2 class="rev">Así de sencillo</h2>
+  <ol class="pasos" style="margin-top:36px">
+   <li class="rev"><h3>Cuéntanos tu coche</h3><p>Marca, modelo, año y kilómetros.</p></li>
+   <li class="rev" style="--i:1"><h3>Te damos una valoración</h3><p>Te contactamos para hablar del precio.</p></li>
+   <li class="rev" style="--i:2"><h3>Cerramos la operación</h3><p>Tramitamos el cambio de titularidad con nuestra gestoría.</p></li>
   </ol>
   <p class="texto">También puedes llamarnos al <a href="tel:+34605976375"><strong>605&nbsp;97&nbsp;63&nbsp;75</strong></a> o pasar por el local.</p>
+  <div class="chat rev" aria-label="Así quedará tu mensaje de WhatsApp">
+   <div class="chat-cab"><img src="logo-icono.png" alt="" width="38" height="38"><span>AutosJBS<small>Así quedará tu mensaje</small></span></div>
+   <div class="chat-cuerpo"><p class="globo" id="vista-wa" aria-live="polite"></p></div>
+  </div>
  </div>
 
- <form class="formu" id="vende" aria-label="Datos de tu coche">
+ <form class="formu pega" id="vende" aria-label="Datos de tu coche">
+  <div class="avance" aria-hidden="true"><i id="vende-avance"></i></div>
   <div class="dosc">
    <div><label for="v-marca">Marca</label><input id="v-marca" name="marca" autocomplete="off" required></div>
    <div><label for="v-modelo">Modelo</label><input id="v-modelo" name="modelo" autocomplete="off" required></div>
@@ -57,7 +61,7 @@
    <div><label for="v-tel">Teléfono</label><input id="v-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required></div>
   </div>
   <div><label for="v-msg">Comentarios (opcional)</label><textarea id="v-msg" name="msg" rows="3" autocomplete="off"></textarea></div>
-  <button class="btn" type="submit">Enviar por WhatsApp</button>
+  <button class="btn oro" type="submit"><svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"  aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 0 1 12 3.800Zm-3.300 3.700c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.300s1 2.700 1.100 2.900c.2.2 2 3.100 4.900 4.300 2.400.9 2.900.8 3.400.7.5 0 1.700-.7 1.900-1.300.2-.7.2-1.200.2-1.300l-.5-.3-1.800-.9c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.3-.1-1.100-.4-2.100-1.300-.8-.7-1.300-1.500-1.400-1.800-.2-.2 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-2c-.2-.5-.4-.5-.6-.5h-.5Z"/></svg>Enviar por WhatsApp</button>
   <small>Al enviar se abrirá WhatsApp con tu mensaje ya escrito.</small>
  </form>
 </div>
