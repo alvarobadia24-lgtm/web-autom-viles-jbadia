@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#eef1f5">
+<meta name="theme-color" content="#07111c">
 <title>Coche · AutosJBS</title>
 <meta name="description" content="Ficha del coche: fotos, características y precio. AutosJBS, Bollullos de la Mitación.">
 <meta property="og:type" content="website">
@@ -15,22 +15,26 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<link rel="preload" href="fuentes/saira.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/instrument.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="estilos.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 <div id="cab"></div>
 <main id="main">
+
+<section class="portadilla corta oscuro"><div class="wrap">
+ <nav class="miga" aria-label="Estás en"><a id="volver" href="coches.html"><svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Coches en venta</a><span aria-hidden="true">/</span><span id="miga"></span></nav>
+</div></section>
 <div class="wrap">
- <a class="volver" id="volver" href="coches.html">← Volver al catálogo</a>
  <div class="ficha" id="ficha"></div>
 </div>
 <section class="seccion" style="padding-top:0"><div class="wrap">
- <div class="cabeza"><h2>Coches de precio parecido</h2></div>
+ <div class="cabeza"><h2>Coches de precio parecido</h2><a class="btn osc" href="coches.html">Ver todos los coches</a></div>
  <div class="rejilla" id="parecidos"></div>
 </div></section>
+
 </main>
 <div id="pie"></div>
 <script src="datos.js"></script><script src="componentes.js"></script><script src="app.js"></script>

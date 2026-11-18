@@ -1,0 +1,215 @@
+:root{color-scheme:light;--suelo:#e8ebe6;--tarjeta:#fff;--campo:#cfd6c9;--tinta:#0e0f0c;--suave:#565955;--linea:#8a8d87;--acento:#9fe870;--acento-p:#8bd95c;--foco:#0e0f0c;--r:24px;--g:clamp(16px,3vw,32px);--sec:clamp(72px,10vw,160px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:9rem;-webkit-tap-highlight-color:transparent}
+body{font:400 1rem/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--tinta);background:var(--suelo)}
+img{display:block;max-width:100%}a{color:inherit}
+h1,h2,h3{font-weight:800;text-wrap:balance;letter-spacing:-.03em;line-height:1.05}
+h1{font-size:clamp(2.25rem,6vw,4.5rem);letter-spacing:-.035em;line-height:1.02}
+h2{font-size:clamp(2rem,4.5vw,3.5rem)}
+p{text-wrap:pretty}
+.wrap{max-width:1280px;margin-inline:auto;padding-inline:var(--g)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--foco);outline-offset:3px}
+.oscuro{--foco:var(--acento)}
+.salto{position:absolute;left:8px;top:-80px;z-index:100;background:#fff;padding:12px 16px;border-radius:12px;font-weight:600}
+.salto:focus{top:8px}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border:0;border-radius:999px;background:var(--acento);color:var(--tinta);font:600 1rem/1 inherit;text-decoration:none;cursor:pointer;touch-action:manipulation;transition:transform .15s}
+.btn:hover{background:var(--acento-p)}.btn:active{transform:scale(.97)}
+.btn.sec{background:var(--suelo)}.btn.sec:hover{background:var(--campo)}
+.btn.osc{background:var(--tinta);color:#fff}.btn.osc:hover{background:#2b2d2a}
+.btn.mini{min-height:40px;padding:0 18px;font-size:.9rem}
+
+/* Cabecera */
+.cab{position:sticky;top:0;z-index:20;background:var(--tarjeta)}
+.cab-fila{display:flex;align-items:center;gap:20px;min-height:72px}
+.marca{font-size:1.3rem;font-weight:800;letter-spacing:-.03em;text-decoration:none;white-space:nowrap}
+.busca{flex:1;max-width:560px;display:flex;gap:8px}
+.busca input{flex:1;min-width:0}
+.cats{display:flex;gap:4px;overflow-x:auto;padding-bottom:12px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cats a{flex:none;padding:8px 18px;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none}
+.cats a:hover{background:var(--suelo)}.cats a[aria-current]{background:var(--tinta);color:#fff}
+
+/* Formularios (los campos sí llevan línea) */
+label,legend{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
+input,select{width:100%;min-height:48px;padding:0 16px;border:1px solid var(--linea);border-radius:12px;background-color:#fff;color:var(--tinta);font:inherit}
+input[type=checkbox]{width:20px;min-height:0;height:20px;accent-color:var(--tinta);flex:none}
+.busca input{border-radius:999px}
+fieldset{border:0}
+
+/* Portada */
+.hero{padding-block:clamp(32px,6vw,72px) var(--sec)}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,5vw,64px);align-items:center}
+.hero p.lead{font-size:1.25rem;max-width:34em;margin:28px 0 36px}
+.buscador{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:24px;border-radius:var(--r);background:var(--tarjeta)}
+.buscador .btn{grid-column:1/-1}
+.hero-foto{aspect-ratio:4/5;border-radius:var(--r);background:var(--campo);overflow:hidden}
+.hero-foto img{width:100%;height:100%;object-fit:cover}
+.banda{background:var(--tinta);color:#fff;padding-block:clamp(48px,7vw,96px)}
+.hechos{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.hechos strong{display:block;font-size:clamp(2.5rem,6vw,5rem);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--acento);margin-bottom:12px}
+.seccion{padding-block:var(--sec)}
+.cabeza{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.cabeza p{max-width:34em;color:var(--suave)}
+.gamas{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:16px}
+.gama{display:flex;flex-direction:column;justify-content:space-between;gap:48px;min-height:380px;padding:32px;border-radius:var(--r);background:var(--tarjeta);text-decoration:none;transition:transform .2s}
+.gama:hover{transform:translateY(-4px)}
+.gama.alta{background:var(--tinta);color:#fff}.gama.eco{background:var(--campo)}
+.gama h3{font-size:clamp(1.75rem,3vw,2.5rem)}
+.gama .desde{display:block;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;letter-spacing:-.03em}
+.gama .ver{font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,6vw,96px);align-items:start}
+.pasos{list-style:none;display:grid;gap:16px;counter-reset:p}
+.pasos li{counter-increment:p;padding:28px 32px;border-radius:var(--r);background:var(--tarjeta)}
+.pasos li:nth-child(2){background:var(--campo)}
+.pasos h3{font-size:1.5rem;margin-bottom:6px}.pasos h3::before{content:counter(p)". ";color:var(--suave)}
+.cta{background:var(--tinta);color:#fff;border-radius:var(--r);padding:clamp(32px,6vw,80px);display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.cta p{margin-top:12px;max-width:30em}
+
+/* Tarjetas de coche */
+.rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+.coche{background:var(--tarjeta);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.foto{position:relative;aspect-ratio:4/3;background:var(--campo)}
+.foto img{width:100%;height:100%;object-fit:cover}
+.etq{position:absolute;top:14px;left:14px;padding:5px 12px;border-radius:999px;background:#fff;font-size:.85rem;font-weight:600}
+.etq.alta{background:var(--tinta);color:#fff}
+.coche-info{padding:20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.coche h3{font-size:1.2rem;letter-spacing:-.02em;overflow-wrap:anywhere}
+.datos{color:var(--suave);font-size:.9rem;font-variant-numeric:tabular-nums}
+.fila{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:14px}
+.precio{font-size:1.6rem;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+
+/* Catálogo */
+.titulo{padding-block:clamp(32px,5vw,64px) 32px}
+.titulo p{margin-top:12px;color:var(--suave);max-width:34em}
+.cat{display:grid;grid-template-columns:300px 1fr;gap:32px;align-items:start;padding-bottom:var(--sec)}
+.lateral{position:sticky;top:9rem;background:var(--tarjeta);border-radius:var(--r);padding:24px}
+.lateral summary{font-weight:800;font-size:1.25rem;cursor:pointer;list-style:none}
+.lateral summary::-webkit-details-marker{display:none}
+#filtros{display:grid;gap:18px;margin-top:20px}
+.marcas{display:grid;gap:4px;max-height:220px;overflow-y:auto;overscroll-behavior:contain}
+.marcas label{display:flex;align-items:center;gap:10px;margin:0;padding:6px 0;font-weight:400;font-size:1rem;cursor:pointer}
+.marcas small{margin-left:auto;color:var(--suave)}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.barra{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.barra select{width:auto;min-width:210px}
+#cuenta{font-size:1.25rem;font-weight:800;letter-spacing:-.02em}
+#chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+#chips:empty{display:none}
+.chip{border:0;border-radius:999px;padding:8px 14px;background:var(--tarjeta);font:600 .875rem inherit;cursor:pointer;touch-action:manipulation}
+.chip:hover{background:var(--tinta);color:#fff}
+.vacio{padding:48px 32px;border-radius:var(--r);background:var(--tarjeta)}
+.vacio p{margin:12px 0 24px;color:var(--suave)}
+.vacio .btn+.btn{margin-left:8px}
+
+/* Pie */
+.pie{background:var(--tinta);color:#fff;padding-block:64px 32px}
+.pie-grid{display:grid;grid-template-columns:2fr 1fr 1.4fr;gap:40px}
+.pie h2{font-size:1.1rem;letter-spacing:-.01em;margin-bottom:14px}
+.pie a{display:block;padding:3px 0;text-decoration:none;color:#c9cdc6}.pie a:hover{color:#fff}
+.pie p{color:#c9cdc6}
+.gran{font-size:clamp(2.5rem,8.5vw,8rem);font-weight:800;letter-spacing:-.05em;line-height:.9;margin-top:64px}
+
+/* Movimiento: solo transform y opacity; el contenido es visible sin JS */
+.js .rev{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;transition-delay:calc(var(--i,0)*80ms)}
+.js .rev.vis{opacity:1;transform:none}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media(prefers-reduced-motion:reduce){.js .rev{opacity:1;transform:none;transition:none}.gama,.btn{transition:none}}
+
+@media(max-width:960px){
+.cab{position:static}
+.cab-fila{flex-wrap:wrap;padding-block:12px;gap:12px}.busca{order:3;flex-basis:100%;max-width:none}.cab-fila .btn{margin-left:auto}
+.hero-grid,.dos,.gamas,.cat,.pie-grid{grid-template-columns:1fr}
+.hero-foto{aspect-ratio:4/3}.gama{min-height:240px}.lateral{position:static}
+.hechos{grid-template-columns:1fr}.buscador{grid-template-columns:1fr}
+}
+
+/* Ficha de coche + enlace de tarjeta */
+.coche{position:relative}
+.enlace{text-decoration:none}.coche:hover .enlace{text-decoration:underline}
+.enlace::after{content:"";position:absolute;inset:0}
+.enlace:focus-visible{outline:none}.enlace:focus-visible::after{outline:3px solid var(--foco);outline-offset:3px;border-radius:var(--r)}
+.fila .btn{position:relative;z-index:1}
+.volver{display:inline-block;margin-block:24px 16px;font-weight:600}
+.ficha{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(24px,4vw,56px);align-items:start;padding-bottom:var(--sec)}
+.grande{position:relative;aspect-ratio:4/3;background:var(--campo);border-radius:var(--r);overflow:hidden;touch-action:pan-y}
+.grande img{width:100%;height:100%;object-fit:cover}
+.fl{position:absolute;top:50%;translate:0 -50%;width:48px;height:48px;border:0;border-radius:50%;background:#fff;font:600 1.75rem/1 inherit;cursor:pointer;touch-action:manipulation}
+.fl:hover{background:var(--acento)}.fl.izq{left:16px}.fl.der{right:16px}
+.cont{position:absolute;left:16px;bottom:16px;padding:4px 12px;border-radius:999px;background:var(--tinta);color:#fff;font-size:.85rem;font-variant-numeric:tabular-nums}
+.minis{display:flex;gap:8px;margin-top:12px;padding:4px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+.miniatura{flex:none;width:88px;aspect-ratio:4/3;padding:0;border:0;border-radius:12px;overflow:hidden;background:var(--campo);opacity:.65;cursor:pointer;touch-action:manipulation}
+.miniatura:hover{opacity:1}.miniatura[aria-current=true]{opacity:1;outline:3px solid var(--tinta)}
+.miniatura img{width:100%;height:100%;object-fit:cover}
+.descr{margin-top:24px;padding:32px;border-radius:var(--r);background:var(--tarjeta)}
+.descr h2{font-size:1.5rem;margin-bottom:12px}.descr p+p{margin-top:12px}
+.panel{position:sticky;top:9rem;display:grid;gap:20px;padding:32px;border-radius:var(--r);background:var(--tarjeta)}
+.panel h1{font-size:clamp(1.75rem,3vw,2.5rem);overflow-wrap:anywhere}
+.panel .precio{font-size:clamp(2rem,4vw,3rem)}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.specs div{padding:12px 16px;border-radius:16px;background:var(--suelo)}
+.specs div:last-child:nth-child(odd){grid-column:1/-1}
+.specs dt{font-size:.85rem;color:var(--suave)}.specs dd{font-weight:600;font-variant-numeric:tabular-nums}
+.acciones{display:grid;gap:8px}
+.nota{font-size:.9rem;color:var(--suave)}
+@media(max-width:960px){.ficha{grid-template-columns:1fr}.panel{position:static}}
+
+/* Menú principal, WhatsApp flotante y páginas Vende / Nosotros / Contacto */
+.menu{display:flex;gap:4px;margin:0 auto 0 12px}
+.menu a{flex:none;padding:8px 14px;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none}
+.menu a:hover{background:var(--suelo)}.menu a[aria-current]{background:var(--tinta);color:#fff}
+.busca{max-width:280px}
+.hechos strong{font-size:clamp(2.25rem,4.6vw,4rem);overflow-wrap:anywhere}
+.hechos.pal strong{font-size:clamp(2rem,3.6vw,3rem)}
+.wa-f{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:30;display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:var(--acento);color:var(--tinta);font-weight:600;text-decoration:none;box-shadow:0 4px 16px rgba(14,15,12,.25);touch-action:manipulation}
+.wa-f:hover{background:var(--acento-p)}
+.botones{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.texto{margin-top:20px;font-size:1.125rem;max-width:34em}
+.hero-foto.ancha{aspect-ratio:4/3}
+textarea{width:100%;padding:12px 16px;border:1px solid var(--linea);border-radius:12px;background-color:#fff;color:var(--tinta);font:inherit;resize:vertical}
+.formu{display:grid;gap:16px;padding:32px;border-radius:var(--r);background:var(--tarjeta)}
+.dosc{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.formu small{color:var(--suave)}
+.contacto{display:grid;gap:8px}
+.contacto>div{padding:20px 24px;border-radius:16px;background:var(--tarjeta)}
+.contacto dt{font-size:.9rem;color:var(--suave)}
+.contacto dd{font-size:1.25rem;font-weight:600;overflow-wrap:anywhere}
+.horario{padding:32px;border-radius:var(--r);background:var(--tarjeta)}
+.horario h2{font-size:clamp(1.75rem,3vw,2.5rem);margin-bottom:12px}
+.estado{font-weight:600;margin-bottom:20px}
+.horario table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.horario td{padding:12px 0}.horario tr:nth-child(odd) td{background:var(--suelo)}
+.horario td:first-child{padding-left:16px;border-radius:12px 0 0 12px}.horario td:last-child{padding-right:16px;text-align:right;font-weight:600;border-radius:0 12px 12px 0}
+@media(max-width:960px){
+.busca{max-width:none}
+.menu{order:2;flex-basis:100%;margin:0;overflow-x:auto;scrollbar-width:none}
+.dosc{grid-template-columns:1fr}
+}
+/* Correcciones tras revisar en navegador + páginas legales */
+[hidden]{display:none!important}
+button,input,select,textarea{font-family:inherit}
+.btn{font-weight:600;font-size:1rem;line-height:1}
+.chip{font-size:.875rem;font-weight:600}
+.fl{font-size:1.75rem;line-height:1}
+.ficha>*{min-width:0}
+.panel .etq{justify-self:start}
+.cta>div{flex:1 1 24rem}
+.legal{padding-bottom:var(--sec)}.legal>*{max-width:46rem}
+.legal h2{font-size:1.5rem;margin:40px 0 8px}
+.legal p,.legal li{margin-top:10px}
+.legal ul{padding-left:1.25rem}
+.legal a{text-underline-offset:3px}
+.pie-legal{display:flex;gap:8px 24px;flex-wrap:wrap;margin-top:40px;font-size:.9rem}
+.pie-legal a{display:inline;padding:0}
+/* Paleta azul marino y oro, sacada del logo */
+:root{--suelo:#eef1f5;--campo:#d9e0ea;--tinta:#10253b;--suave:#4f6178;--linea:#7b8aa0;--acento:#d2b369;--acento-p:#c4a257}
+.btn.osc:hover{background:#1d3a59}
+.pie a,.pie p{color:#c3cfdd}
+.marca{display:inline-flex;align-items:center;gap:10px}
+.marca img{border-radius:10px}
+/* Reservado y avisos */
+.etq.res{left:auto;right:14px;background:var(--acento)}
+.aviso-res{padding:12px 16px;border-radius:12px;background:var(--suelo)}
+.aviso-carga{margin-top:24px;padding:16px;border-radius:12px;background:var(--tarjeta)}
